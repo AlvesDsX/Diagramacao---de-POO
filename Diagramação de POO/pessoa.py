@@ -6,7 +6,7 @@ class PessoaIFRO(ABC):
       self.matricula = matricula    #será verifcado com o setter
       self.senha = senha  
       self.turma = turma          #será verifcado com o setter
-
+#jjhkjj
   @property
   def nome(self):
       return self._nome
