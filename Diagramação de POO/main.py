@@ -1,9 +1,9 @@
-from CLASSES import *
+from CLASSES import * # type: ignore
 
 #Lista para armazenar todos os usuários registrados.
 usuarios = []
 
-#Função para personalizar linhas e textos
+#Funções para personalizar linhas e textos
 def titulo(txt):
     print("-"*30)
     print(txt)
@@ -13,12 +13,22 @@ def tipoUser(tipotxt):
     print(tipotxt)
 
 usuarios = []
-#Primeiro, coletar a info. dos usuários, pois elas serão usadas durante o restante do programa.
+#Primeiro, coletar a info. dos usuários com as devidas validações, pois elas serão usadas durante o restante do programa.
 def coletarInformacoesUsers():
-    nome = input("Digite seu nome: ").strip()
-    matricula = input("Digite sua matrícula: ").strip()
-    senha = input("Digite sua senha: ").strip()
-    return{"Nome": nome, "Matrícula": matricula, "Senha": senha}
+    while True:
+        nome = input("Digite seu nome: ").strip()
+        if len(nome) == 0:
+            print("\033[3mO campo obrigatório está vazio*\033[0m")
+
+        matricula = input("Digite sua matrícula (13 dígitos): ").strip()
+        if not matricula.isdigit() or len(matricula) != 13:
+            print("\033[3mA matrícula deve conter 13 dígitos*\033[0m")
+
+        senha = input("Digite sua senha (mínimo 8 caracteres, ao menos um número.): ").strip()
+        if len(senha) < 8 or not any(char.isdigit() for char in senha):
+            print("\033[3mA senha deve conter pelo menos 8 caracteres com ao menos um número*\033[0m")
+
+        return{"Nome": nome, "Matrícula": matricula, "Senha": senha}
 
 #Escolher o tipo de usuário do sistema.
 def escolherTipoUser():
@@ -48,38 +58,43 @@ def registrarUser():
     escolha = escolherTipoUser()
     titulo("    Registro de Usuário:")
     tipoUser(f"Opção \033[1m{escolha}\033[0m escolhido com sucesso!\n")
-    infoUsers = coletarInformacoesUsers()
-    matricula = infoUsers["Matrícula"]
 
-#Verificação da matrícula.
-    if any(usuario.matricula == matricula for usuario in usuarios):
-        print("\nErro: Matrícula já cadastrada.")
-        return
+    while True:
+        try:
+            infoUsers = coletarInformacoesUsers()
+            matricula = infoUsers["Matrícula"]
 
-    if escolha == 'Aluno':
-        turma = input("Digite seu turno: ").strip()
-        usuario = Aluno(infoUsers["Nome"], matricula, infoUsers["Senha"], turma)
-    elif escolha == 'Professor Técnico':
-        modalidade = input("Digite sua modalidade: ").strip()
-        aulas = input("Digite as aulas: ").strip()
-        usuario = ProfessorTecnico(infoUsers["Nome"], matricula, infoUsers["Senha"], modalidade, aulas)
-    elif escolha == 'Professor Matéria':
-        aulas = input("Digite as aulas: ").strip()
-        usuario = ProfessorMateria(infoUsers["Nome"], matricula, infoUsers["Senha"], aulas)
-    else:
-        print("\n\033[3mTipo de usuário inválido.\033[0m")
-        return
+        #Verificação da matrícula.
+            if any(usuario.matricula == matricula for usuario in usuarios):
+                print("\nErro: Matrícula já cadastrada.")
+                return
 
-    usuarios.append(usuario)
-    titulo("Registro de Usuário:")
-    print("\n\033[3mUsuário registrado com sucesso!\033[0m")
+            if escolha == 'Aluno':
+                turma = input("Digite seu turno: ").strip()
+                usuario = Aluno(infoUsers["Nome"], matricula, infoUsers["Senha"], turma)
+            elif escolha == 'Professor Técnico':
+                aulas = input("Digite as aulas: ").strip()
+                departamento = input("Digite seu departamento (Matemática, Filosofia ou Educ. Financeira): ").strip()
+                usuario = ProfessorTecnico(infoUsers["Nome"], matricula, infoUsers["Senha"], departamento, aulas)
+            elif escolha == 'Professor Matéria':
+                aulas = input("Digite as aulas: ").strip()
+                usuario = ProfessorMateria(infoUsers["Nome"], matricula, infoUsers["Senha"], aulas)
+            else:
+                print("\n\033[3mTipo de usuário inválido.\033[0m")
+                return
+
+            usuarios.append(usuario)
+            titulo("Registro de Usuário:")
+            print("\n\033[3mUsuário registrado com sucesso!\033[0m")
+            break
+        except ValueError as erro:
+            print(f"Erro correspondente: {erro}") #Exibindo a mensagem correspondente ao erro com base nas validações criadas nas @properties
 
 def fazer_login():
   titulo("       Realizar login:")
   matricula = input("\nDigite sua matrícula: ").strip()
   senha = input("Digite sua senha: ").strip()
   
-
   for usuario in usuarios:
       if usuario.matricula == matricula and usuario.verificar_senha(senha):
           print("\n\033[1m\033[3mLogin perfeitamente efetuado.\033[0m")
@@ -107,5 +122,5 @@ def menu():
       else:
           print("Opção inválida. Tente novamente.")
 
-# Executando o menu
+#Executando o menu
 menu()
