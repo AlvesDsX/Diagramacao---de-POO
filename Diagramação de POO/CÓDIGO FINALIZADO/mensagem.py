@@ -8,14 +8,13 @@ class Mensagem:
 
     def enviarNotificacao(self):
         print(f"Notificação de {self.remetente.nome} para {self.destinatario}:")
-        print(f"Campeonato: {self.campeonato.nome}")
+        print(f"Campeonato: {self.campeonato.nomecamp}")  # Corrigido para 'nomecamp'
         if self.data:
             print(f"Data do evento: {self.data}")
         print(f"Motivo: {self.motivo}")
 
-    def preencherMensagem(self, motivo):
-        # Atualiza o motivo corretamente
-        self.motivo = motivo  # Usando o atributo correto
+    def preencherMensagem(self, motivo):    
+        self.motivo = motivo
         print("Mensagem esclarecida com o devido motivo:", self.motivo)
 
     def compararHorarios(self, horarios_aula):
@@ -24,3 +23,5 @@ class Mensagem:
             return True
         print("Nenhum conflito de horário detectado.")
         return False
+    
+#MENSAGEM OK

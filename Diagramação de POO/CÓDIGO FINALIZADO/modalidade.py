@@ -15,3 +15,5 @@ class Modalidade():
         for aluno in self.time:
             print(f"Aluno: {aluno.nome}, Matrícula: {aluno.matricula}")
         return self.time
+    
+#MODALIDADE OK

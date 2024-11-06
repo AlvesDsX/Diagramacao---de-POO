@@ -21,3 +21,5 @@ class Jogo:
                 print(f"Jogador: {jogador.nome}")
         else:
             print("Não há registro de nenhum jogador inscrito no jogo.")
+
+#JOGO OK

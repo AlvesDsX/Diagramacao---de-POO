@@ -27,3 +27,5 @@ class Turma:
 
     def verificarConflitoComJogo(self, jogo):
         return self.horario.verificarConflitoComEvento(jogo)
+    
+#AULAS E TURMA OK

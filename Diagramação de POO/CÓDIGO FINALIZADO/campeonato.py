@@ -1,6 +1,6 @@
 class Campeonato:
-    def __init__(self, nome, modalidade, dataInicial, dataFinal):
-        self.nomecamp = nome                    #Nome do campeonato
+    def __init__(self, nomecamp, modalidade, dataInicial, dataFinal):
+        self.nomecamp = nomecamp                   #Nome do campeonato
         self.modalidade = modalidade            #Modalidade referente ao campeonato
         self.dataInicial = dataInicial          #Data inicial do campeonato
         self.dataFinal = dataFinal              #Data final do campeonato
@@ -23,3 +23,5 @@ class Campeonato:
                 print(f'Consulta: Jogo marcado para {jogo.data} no turno da {jogo.turno} no local "{jogo.local}".')
         else:
             print("Nenhum jogo registrado para este campeonato.")
+
+#CAMPEONATO OK

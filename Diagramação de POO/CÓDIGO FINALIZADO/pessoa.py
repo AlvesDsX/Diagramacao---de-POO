@@ -62,3 +62,5 @@ class PessoaIFRO(ABC):
      turma = input("Digite sua turma: ").strip()
 
      return cls(nome, matricula, senha, turma)
+  
+#PESSOAIFRO(ABC) OK

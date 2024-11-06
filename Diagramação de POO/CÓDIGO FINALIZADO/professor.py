@@ -49,3 +49,5 @@ class ProfessorTecnico(PessoaIFRO):
         mensagem = self.preencherMensagem(professor_materia, aluno, campeonato, data_evento, motivo)
         professor_materia.receberMensagem(mensagem)  # Envia a mensagem para o professor de matéria
         print(f"Notificação enviada para o professor de {professor_materia.disciplina}: {professor_materia.nome}")
+
+#PROFESSORTEC e PROFESSORMAT (PESSOAIFRO) OK

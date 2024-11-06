@@ -1,4 +1,4 @@
-from aluno import Aluno
+'''from aluno import Aluno
 from professor import ProfessorTecnico, ProfessorMateria
 from campeonato import Campeonato
 from jogo import Jogo
@@ -165,7 +165,7 @@ def menu():
       else:
           print("Opção inválida. Tente novamente.")
 
-'''#Instâncias de Aluno para simular a validação de inscrição do aluno
+#Instâncias de Aluno para simular a validação de inscrição do aluno
 campeonato_futebol = Campeonato("Campeonato de Futebol", "Futebol", "01/12/2024", "15/12/2024")
 aluno_josmith = Aluno("Herwing Josmith", "1234567890123", "senha123", "Vespertino", "Futsal")
 aluna_marta = Aluno("Marta da Silva", "9876543210987", "senha456", "Matutino", "Vôlei")
@@ -179,7 +179,7 @@ campeonato_futebol.inscreverAluno(aluna_marta)    #Marta não irá ser inscrita
 #Criando um jogo e adicionando um aluno como jogador
 jogo_futebol = Jogo("03/12/2024", "manhã", "Campo Principal")
 jogo_futebol.adicionarJogador(aluno_josmith)      #Adicionar Josmith ao jogo
-jogo_futebol.mostrarJogadores()                   #Exibir os jogadores do jogo'''
+jogo_futebol.mostrarJogadores()                   #Exibir os jogadores do jogo
 
 #Executando o menu
-menu()
+menu()'''          #Em virtude do tempo., não conseguimos conciliar o código com as classes do sistema. :D
