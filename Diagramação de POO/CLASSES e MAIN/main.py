@@ -3,7 +3,6 @@ from professor import ProfessorTecnico, ProfessorMateria
 from campeonato import Campeonato
 from jogo import Jogo
 
-
 #Lista para armazenar todos os usuários registrados.
 usuarios = []
 
@@ -67,6 +66,7 @@ def escolherTipoUser():
         print("\n\033[3mTipo de usuário inválido, tente novamente.\033[0m\n")
 
 #Fazer o registro desse usuário com base na escolha realizada no "escolherTipoUser()".
+# Função para registrar o usuário
 def registrarUser():
     escolha = escolherTipoUser()
     titulo("    Registro de Usuário:")
@@ -74,17 +74,19 @@ def registrarUser():
 
     while True:
         try:
+            # Coletar informações do usuário
             infoUsers = coletarInformacoesUsers()
             matricula = infoUsers["Matrícula"]
 
-        #Verificação da matrícula.
+            # Verificação da matrícula.
             if any(usuario.matricula == matricula for usuario in usuarios):
                 print("\nErro: Matrícula já cadastrada.")
                 return
 
             if escolha == 'Aluno':
                 turma = input("Digite seu turno: ").strip()
-                usuario = Aluno(infoUsers["Nome"], matricula, infoUsers["Senha"], turma)
+                modalidade = input("Digite sua modalidade esportiva: ").strip()  # Solicitar modalidade
+                usuario = Aluno(infoUsers["Nome"], matricula, infoUsers["Senha"], turma, modalidade)  # Passar modalidade
             elif escolha == 'Professor Técnico':
                 aulas = input("Digite as aulas: ").strip()
                 departamento = input("Digite seu departamento (Matemática, Filosofia ou Educ. Financeira): ").strip()
@@ -96,12 +98,13 @@ def registrarUser():
                 print("\n\033[3mTipo de usuário inválido.\033[0m")
                 return
 
+            # Adiciona o usuário à lista de usuários
             usuarios.append(usuario)
             titulo("Registro de Usuário:")
             print("\n\033[3mUsuário registrado com sucesso!\033[0m")
             break
         except ValueError as erro:
-            print(f"Erro correspondente: {erro}") #Exibindo a mensagem correspondente ao erro com base nas validações criadas nas @properties
+            print(f"Erro correspondente: {erro}")  # Exibindo a mensagem correspondente ao erro com base nas validações
 
 def fazer_login():
   titulo("       Realizar login:")
@@ -114,6 +117,33 @@ def fazer_login():
           return usuario
   print("\n\033[3mFalha no login: Senha ou matrícula incorretas.\033[0m")
   return None
+
+def menuUsuario(usuarioLogado):
+    #campeonato e jogo instanciados
+    campeonato_futebol = Campeonato("Campeonato de Futebol", "Futebol", "01/12/2024", "15/12/2024")
+    jogo_futebol = Jogo("03/12/2024", "manhã", "Ginásio Claúdio Coutinho")
+
+    while True:
+            titulo(f"Seja muito bem-vindo, {usuarioLogado.nome}!")
+            print("1. Inscrever-se em campeonato")
+            print("2. Participar de jogo")
+            print("3. Sair")
+            opcao = input("\nEscolha uma opção: ").strip()
+            if opcao == '1':
+                #Inscrevendo o aluno no campeonato
+                aluno = Aluno(usuarioLogado.nome, usuarioLogado.matricula, usuarioLogado.senha, "Vespertino", "Futsal")
+                campeonato_futebol.inscreverAluno(aluno)
+            elif opcao == '2':
+                #Adicionando o aluno no jogo
+                aluno = Aluno(usuarioLogado.nome, usuarioLogado.matricula, usuarioLogado.senha, "Vespertino", "Futsal")
+                jogo_futebol.adicionarJogador(aluno)      # Josmith será adicionado ao jogo
+                jogo_futebol.mostrarJogadores()           # Exibindo os jogadores do jogo
+            elif opcao == '3':
+                print("\nSaindo do sistema...")
+                break
+            else:
+                print("Opção inválida, tente novamente.")
+
 
 def menu():
   while True:
@@ -135,7 +165,7 @@ def menu():
       else:
           print("Opção inválida. Tente novamente.")
 
-#Instâncias de Aluno para simular a validação de inscrição do aluno
+'''#Instâncias de Aluno para simular a validação de inscrição do aluno
 campeonato_futebol = Campeonato("Campeonato de Futebol", "Futebol", "01/12/2024", "15/12/2024")
 aluno_josmith = Aluno("Herwing Josmith", "1234567890123", "senha123", "Vespertino", "Futsal")
 aluna_marta = Aluno("Marta da Silva", "9876543210987", "senha456", "Matutino", "Vôlei")
@@ -149,7 +179,7 @@ campeonato_futebol.inscreverAluno(aluna_marta)    #Marta não irá ser inscrita
 #Criando um jogo e adicionando um aluno como jogador
 jogo_futebol = Jogo("03/12/2024", "manhã", "Campo Principal")
 jogo_futebol.adicionarJogador(aluno_josmith)      #Adicionar Josmith ao jogo
-jogo_futebol.mostrarJogadores()                   #Exibir os jogadores do jogo
+jogo_futebol.mostrarJogadores()                   #Exibir os jogadores do jogo'''
 
 #Executando o menu
 menu()

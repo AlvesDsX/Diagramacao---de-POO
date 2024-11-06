@@ -11,7 +11,8 @@ class Campeonato:
             print(f'Aluno "{aluno.nome}" está inscrito no campeonato "{self.nomecamp}".')
         else:
             print(f'O aluno não pode ser inscrito no campeonato "{self.nomecamp}", pois a modalidade não é correspondente com o campeonato.')
-
+            return
+        
     def adicionarJogo(self, jogo):
         self.jogos.append(jogo)
         print(f'Jogo adicionado ao campeonato "{self.nomecamp}".')

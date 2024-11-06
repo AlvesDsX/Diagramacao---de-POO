@@ -6,11 +6,14 @@ class Jogo:
         self.jogadores = []
 
     def adicionarJogador(self, aluno):
-        if aluno not in self.jogadores:
-            self.jogadores.append(aluno)
-            print(f'Jogador "{aluno.nome}" adicionado ao jogo com sucesso!.')
+        if aluno.modalidade == "Futsal" and self.turno == "Vespertino":  #Simulando
+            if aluno not in self.jogadores:
+                self.jogadores.append(aluno)
+                print(f'Jogador "{aluno.nome}" adicionado ao jogo com sucesso!')
+            else:
+                print(f'O aluno "{aluno.nome}" já está inscrito neste jogo.')
         else:
-            print(f'O aluno "{aluno.nome}" já está inscrito neste jogo.')
+            print(f'O aluno "{aluno.nome}" não pode ser adicionado ao jogo, pois a modalidade ou turno não são compatíveis.')
     
     def mostrarJogadores(self):
         if self.jogadores:

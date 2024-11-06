@@ -2,16 +2,16 @@ from pessoa import PessoaIFRO
 from mensagem import Mensagem
 
 class Aluno(PessoaIFRO):
-    def __init__(self, nome, matricula, senha, turma, modalidade):
-        super().__init__(nome, matricula, senha, turma)
-        self.modalidade = modalidade #Atributo adicional da classe, essa  é a modalidade referente a qual o aluno participa.
+    def __init__(self, nome, matricula, senha, turno, modalidade):
+        super().__init__(nome, matricula, senha, turno)
+        self.modalidade = modalidade  # Atributo adicional da classe, essa é a modalidade referente a qual o aluno participa.
 
     @classmethod
     def registrar(cls):
         pessoa = super().registrar()
-        turma = input("Digite seu turno: ").strip()
+        turno = input("Digite seu turno: ").strip()
         modalidade = input("Digite sua modalidade: ").strip()
-        return cls(pessoa.nome, pessoa.matricula, pessoa._senha, turma, modalidade)
+        return cls(pessoa.nome, pessoa.matricula, pessoa._senha, turno, modalidade)
 
     def justificarFalta(self, campeonato, motivo):
         mensagem = Mensagem(self, "Professor", campeonato, motivo)
@@ -39,4 +39,4 @@ class Aluno(PessoaIFRO):
         else:
             print("A opção escolhida é inválida! Tente novamente.")
             return
-        print(f"Conversa agendada com sucesso!\nAssunto: {assuntos}.\n")
+        print(f"Conversa agendada com sucesso!\nAssunto: {assunto}.\n")
