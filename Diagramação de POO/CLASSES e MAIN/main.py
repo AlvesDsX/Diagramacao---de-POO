@@ -153,3 +153,4 @@ jogo_futebol.mostrarJogadores()                   #Exibir os jogadores do jogo
 
 #Executando o menu
 menu()
+#alterando o menu
