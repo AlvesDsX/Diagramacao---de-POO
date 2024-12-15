@@ -5,7 +5,7 @@ class Aluno(PessoaIFRO):
     def __init__(self, nome, matricula, senha, turno, modalidade):
         super().__init__(nome, matricula, senha, turno)
         self.modalidade = modalidade  #Atributo adicional
-
+    # ALTERAÇÂO TESTE 15.12.2024 13:15
     @classmethod
     def registrar(cls):
         nome = input("Favor, digite o seu nome: ")
