@@ -7,6 +7,7 @@ class Aluno(PessoaIFRO):
         self.modalidade = modalidade  #Atributo adicional
     # ALTERAÇÂO TESTE1 15.12.2024 13:15
     # ALTERAÇÃO TESTE2 15.12.2024 13:17
+    # ALTERAÇÃO TESTE3 15.12.2024 13:22
     @classmethod
     def registrar(cls):
         nome = input("Favor, digite o seu nome: ")
