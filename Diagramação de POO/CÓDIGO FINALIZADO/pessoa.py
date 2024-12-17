@@ -6,7 +6,10 @@ class PessoaIFRO(ABC):
       self.matricula = matricula    #será verificado com o setter
       self.senha = senha            #será verificado com o setter
       self.turma = turma            #será verificado com o setter
-
+class ExceptionClassPessoaIFRO(Exception):
+  def __init__(self, texto):
+    super.__init__(texto)
+  
   @property
   def nome(self):
       return self._nome
@@ -16,7 +19,7 @@ class PessoaIFRO(ABC):
       if len(nome.strip()) > 0: #Verificação do nome, remove os espaços e analisa o comprimento do nome e quant. de strings
         self._nome = nome
       else:
-          raise ValueError("\033[3mO nome não pode está vazio.\033[0m")
+        raise ExceptionClassPessoaIFRO('O nome não pode está vazio.')
  
   @property
   def matricula(self):
@@ -27,7 +30,7 @@ class PessoaIFRO(ABC):
       if matricula.isdigit() and len(matricula) == 13: #Verificando se a matrícula contém N° IR inteiros > 0 e se o seu comprimento é igual a 13.
         self._matricula = matricula
       else:
-          raise ValueError("\033[3mA matrícula deve conter 13 dígitos*\033[0m")
+        raise ExceptionClassPessoaIFRO('A matrícula deve conter 13 dígitos.')
 
   @property
   def senha(self):
@@ -38,7 +41,7 @@ class PessoaIFRO(ABC):
       if len(senha) >= 8 and any(c.isdigit() for c in senha):
         self._senha = senha
       else:
-          raise ValueError("\033[3mA senha deve conter pelo menos 8 caracteres com ao menos um número*\033[0m")
+        raise ExceptionClassPessoaIFRO('A senha deve conter pelo menos 8 caracteres com ao menos um número.')
       
   @property
   def turma(self):
@@ -49,8 +52,8 @@ class PessoaIFRO(ABC):
      if len(turma.strip()) > 0: #Verificando se o que for escrito for > 0 caracteres para validar que o campo não fique vazio.
         self._turma = turma
      else: 
-        raise ValueError('O campo "Turma" não pode estar vazio.')
-      
+       raise ExceptionClassPessoaIFRO('O campo "Turma" não pode estar vazio.')
+       
   def verificar_senha(self, senha):
       return self._senha == senha
   
