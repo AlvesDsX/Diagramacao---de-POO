@@ -10,13 +10,12 @@ class Aluno(PessoaIFRO):
     # Adicionar try: (Matricula ser int); (Senha ter verificação de digitos) 
     def registrar(cls):
         try:
-    nome=input("Favor, digite o seu nome: ")
-    # Verifica se a entrada contém apenas letras e espaços
-    if not all(c.isalpha() or c.isspace() for c in nome):
-        raise ValueError("Um erro foi encontrado")
-    print(f"Você digitou: {nome}")
+            nome=input("Favor, digite o seu nome: ") # Verifica se a entrada contém apenas letras e espaços
+            if not all(c.isalpha() or c.isspace() for c in nome):
+                raise ValueError("Um erro foi encontrado")
+                print(f"Você digitou: {nome}")
         except Exception as erro:
-    print(erro)
+            print(erro)
 
         try: # VERIFICAÇÃO DE Nº INTEIRO EM MATRICULA
             matricula = int(input("Digite sua matrícula (13 dígitos): "))
