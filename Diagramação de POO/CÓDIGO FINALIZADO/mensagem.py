@@ -13,9 +13,20 @@ class Mensagem:
             print(f"Data do evento: {self.data}")
         print(f"Motivo: {self.motivo}")
 
-    def preencherMensagem(self, motivo):    
-        self.motivo = motivo
-        print("Mensagem esclarecida com o devido motivo:", self.motivo)
+    def preencherMensagem(self, professor_materia, aluno, campeonato, data_evento, motivo):
+        try:
+            mensagem = Mensagem(
+                remetente=self.nome,
+                destinatario=professor_materia.nome,
+                campeonato=campeonato,
+                data=data_evento,
+                motivo=motivo
+            )
+            return mensagem
+        except Exception as e:
+            print(f"Erro ao preencher a mensagem: {e}")
+        finally:
+            print("Tentativa de preencher mensagem finalizada.")
 
     def compararHorarios(self, horarios_aula):
         if self.data in horarios_aula:
