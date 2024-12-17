@@ -1,0 +1,15 @@
+git checkout -b nome_da_sua_ramificacao
+
+# Projeto Final - Desenvolvimento Web
+
+"Curso:" Informatica
+"Turma:" Segundo ano C 
+"Diciplina:" Programação Orientada a Objetos
+"Professor (a):" Camila Serrão
+
+"Integrantes:"
+  João Henrique Costa Fontele
+  Valnei Ferreira Gomes Filho
+  Paulo Gabriel Vieira Alves
+  Gabriel Lucas Guimarães Machado
+  Herwing Josmith Prezume
