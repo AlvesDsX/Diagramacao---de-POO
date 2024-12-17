@@ -7,6 +7,7 @@ class Aluno(PessoaIFRO):
         self.modalidade = modalidade  #Atributo adicional
 
     @classmethod
+    # Adicionar try: (Matricula ser int); (Senha ter verificação de digitos) 
     def registrar(cls):
         nome = input("Favor, digite o seu nome: ")
         matricula = input("Digite sua matrícula (13 dígitos): ")
@@ -22,8 +23,8 @@ class Aluno(PessoaIFRO):
         mensagem = Mensagem(self, "Professor", campeonato, motivo)
         mensagem.enviarNotificacao()
         print("Justificativa de falta enviada com sucesso.")
-
-    def conversarProf(self):
+    
+        def conversarProf(self):
         assuntos = [
             "1. Justificativa de faltas",
             "2. Pedido de prorrogação de prazo para entrega de trabalhos",
