@@ -45,9 +45,13 @@ class ProfessorTecnico(PessoaIFRO):
         return mensagem
 
     def notificarProfessor_Materia(self, professor_materia, aluno, campeonato, data_evento, motivo):
-        # Cria e envia uma notificação para o professor de matéria
-        mensagem = self.preencherMensagem(professor_materia, aluno, campeonato, data_evento, motivo)
-        professor_materia.receberMensagem(mensagem)  # Envia a mensagem para o professor de matéria
-        print(f"Notificação enviada para o professor de {professor_materia.disciplina}: {professor_materia.nome}")
+        try:
+            mensagem = self.preencherMensagem(professor_materia, aluno, campeonato, data_evento, motivo)
+            professor_materia.receberMensagem(mensagem)
+            print(f"Notificação enviada para o professor de {professor_materia.disciplina}: {professor_materia.nome}")
+        except Exception as e:
+            print(f"Erro ao notificar o professor: {e}")
+        finally:
+            print("Processo de notificação finalizado.")
 
 #PROFESSORTEC e PROFESSORMAT (PESSOAIFRO) OK
