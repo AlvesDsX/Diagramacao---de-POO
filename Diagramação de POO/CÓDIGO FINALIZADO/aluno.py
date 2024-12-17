@@ -9,13 +9,28 @@ class Aluno(PessoaIFRO):
     @classmethod
     # Adicionar try: (Matricula ser int); (Senha ter verificação de digitos) 
     def registrar(cls):
-        nome = input("Favor, digite o seu nome: ")
-        matricula = input("Digite sua matrícula (13 dígitos): ")
-        senha = input("Digite sua senha (mínimo 8 caracteres): ")
+        try:
+    nome=input("Favor, digite o seu nome: ")
+    # Verifica se a entrada contém apenas letras e espaços
+    if not all(c.isalpha() or c.isspace() for c in nome):
+        raise ValueError("Um erro foi encontrado")
+    print(f"Você digitou: {nome}")
+        except Exception as erro:
+    print(erro)
+
+        try: # VERIFICAÇÃO DE Nº INTEIRO EM MATRICULA
+            matricula = int(input("Digite sua matrícula (13 dígitos): "))
+        except Exception as erro:
+            print(f'O erro encontrado foi {erro.__cause__}.')
+
+        try: # VERIFICAÇÃO DE CARACTER DE SENHA
+            senha = str(input("Digite sua senha (mínimo 8 caracteres): "))
+        except:
+            print('Um erro foi encontrado.')
+            
         turno = input("Digite seu turno: ")                #Se é de manhã, tarde, noite
         modalidade = input("Digite sua modalidade: ")      #Coleta a modalidade do aluno
 
-        #Cria e retorna uma instância da classe Aluno
         aluno = cls(nome, matricula, senha, turno, modalidade)
         return aluno
 
