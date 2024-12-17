@@ -10,6 +10,7 @@ from mensagem import Mensagem
 #Verificando a consistência da matrícula
 def validar_matricula():
     while True:
+        # Adicionar Try: (Verificação se é int)
         matricula = input("Digite sua matrícula (13 dígitos): ").strip()
         if len(matricula) != 13 or not matricula.isdigit():
             print("\033[3mA matrícula deve conter exatamente 13 dígitos e apenas números.\033[0m")
@@ -18,6 +19,7 @@ def validar_matricula():
 #Verificando a consistência da senha
 def validar_senha():
     while True:
+        # Adicionar try: (Verificação se é int)
         senha = input("\nDigite sua senha (mínimo 8 caracteres, ao menos um número.): ").strip()
         if len(senha) < 8 or not any(char.isdigit() for char in senha):
             print("\033[3mA senha deve ter pelo menos 8 caracteres e conter ao menos um número.\033[0m")
@@ -26,6 +28,16 @@ def validar_senha():
 
 def coletarInformacoesUsers():
     while True:
+        # adicionar try com o exemplo a seguir:
+        '''while True:
+    texto = input("Digite apenas letras e espaços: ")
+    if all(char.isalpha() or char.isspace() for char in texto) and texto.strip():
+        # Valida se todos os caracteres são letras ou espaços e não é vazio
+        break
+    else:
+        print("Entrada inválida. Por favor, digite apenas letras e espaços.")
+    print(f"Você digitou: '{texto}'")'''
+        
         nome = input("Digite seu nome: ").strip()
         if len(nome) == 0:
             print("\033[3mO campo nome não pode estar vazio.\033[0m")
@@ -93,6 +105,7 @@ def menu_principal():
     print("6. Conversar com professor")
     print("7. Sair")
     
+    # Adicionar Try e int
     opcao = input("\nDigite o número da opção desejada: ")
     
     if opcao == '1':
