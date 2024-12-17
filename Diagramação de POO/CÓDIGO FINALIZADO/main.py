@@ -10,11 +10,13 @@ from mensagem import Mensagem
 #Verificando a consistência da matrícula
 def validar_matricula():
     while True:
-        matricula = input("Digite sua matrícula (13 dígitos): ").strip()
-        if len(matricula) != 13 or not matricula.isdigit():
-            print("\033[3mA matrícula deve conter exatamente 13 dígitos e apenas números.\033[0m")
-        else:
+        try:
+            matricula = input("Digite sua matrícula (13 digitos): ").strip()
+            if len(matricula) != 13 or not matricula.isdigit():
+                raise ValueError("A matrícula deve conter exatamente 13 dígitos e apenas números")
             return matricula
+        except ValueError as e:
+            print(f"{e}")
 #Verificando a consistência da senha
 def validar_senha():
     while True:
