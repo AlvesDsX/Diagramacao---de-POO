@@ -11,38 +11,35 @@ from mensagem import Mensagem
 def validar_matricula():
     while True:
         # Adicionar Try: (Verificação se é int)
-        matricula = input("Digite sua matrícula (13 dígitos): ").strip()
-        if len(matricula) != 13 or not matricula.isdigit():
-            print("\033[3mA matrícula deve conter exatamente 13 dígitos e apenas números.\033[0m")
-        else:
-            return matricula
+        try: 
+            matricula = int(input("Digite sua matrícula (13 dígitos): ")).strip()
+            if len(matricula) != 13 or not matricula.isdigit():
+                print("\033[3mA matrícula deve conter exatamente 13 dígitos e apenas números.\033[0m")
+            else:
+                return matricula
+        except Exception as Erro:
+            print(f'O erro encontrado foi {erro}.')
 #Verificando a consistência da senha
 def validar_senha():
     while True:
-        # Adicionar try: (Verificação se é int)
         senha = input("\nDigite sua senha (mínimo 8 caracteres, ao menos um número.): ").strip()
         if len(senha) < 8 or not any(char.isdigit() for char in senha):
             print("\033[3mA senha deve ter pelo menos 8 caracteres e conter ao menos um número.\033[0m")
         else:
             return senha
 
-def coletarInformacoesUsers():
-    while True:
-        # adicionar try com o exemplo a seguir:
-        '''while True:
-    texto = input("Digite apenas letras e espaços: ")
-    if all(char.isalpha() or char.isspace() for char in texto) and texto.strip():
-        # Valida se todos os caracteres são letras ou espaços e não é vazio
-        break
-    else:
-        print("Entrada inválida. Por favor, digite apenas letras e espaços.")
-    print(f"Você digitou: '{texto}'")'''
-        
-        nome = input("Digite seu nome: ").strip()
+def coletarInformacoesUsers(): # adicionar try com o exemplo a seguir:
+    try:
+        nome=input("Favor, digite o seu nome: ").strip() # Verifica se a entrada contém apenas letras e espaços
         if len(nome) == 0:
             print("\033[3mO campo nome não pode estar vazio.\033[0m")
         else:
             break
+        if not all(c.isalpha() or c.isspace() for c in nome):
+            raise ValueError("Um erro foi encontrado")
+            print(f"Você digitou: {nome}")
+    except Exception as erro:
+        print(erro)
 
     matricula = validar_matricula()  #Validando a matrícula
     senha = validar_senha()          #Validando a senha
@@ -106,7 +103,10 @@ def menu_principal():
     print("7. Sair")
     
     # Adicionar Try e int
-    opcao = input("\nDigite o número da opção desejada: ")
+    try:
+        opcao = int(input("\nDigite o número da opção desejada: "))
+    except Expection as erro:
+        print(f'O erro encontrado foi {erro.__cause__}!')
     
     if opcao == '1':
         aluno_info = coletarInformacoesUsers()
