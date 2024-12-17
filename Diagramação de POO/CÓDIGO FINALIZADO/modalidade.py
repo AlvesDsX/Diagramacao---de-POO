@@ -7,13 +7,31 @@ class Modalidade():
         self.time = List[Aluno] = []
 
     def adicionarAluno(self, aluno: Aluno):
-        if aluno not in self.time:
-            self.time.append(aluno)
-            print(f'Aluno {aluno.nome} foi adicionado ao time de {self.modalidade}.')
+        try:
+            if not isinstance(aluno, Aluno):
+                raise TypeError("Somente objetos do tipo 'Aluno' podem ser adicionados ao time.")
+            
+            if aluno in self.time:
+                print(f"Aluno {aluno.nome} já está no time de {self.modalidade}.")
+
+            else:
+                self.time.append(aluno)
+                print(f'Aluno {aluno.nome} foi adicionado ao time de {self.modalidade}.')
+        except TypeError as e:
+                        print(f"Erro: {e}")
+        except Exception as e:
+            print(f"Ocorreu um erro inesperado: {e}")
 
     def visualizarTime(self):
-        for aluno in self.time:
-            print(f"Aluno: {aluno.nome}, Matrícula: {aluno.matricula}")
-        return self.time
+        try:
+            if not self.time:
+                 print(f"Não há alunos no time de {self.modalidade}.")
+                 return []
+            
+            for aluno in self.time:
+                print(f"Aluno: {aluno.nome}, Matrícula: {aluno.matricula}")
+            return self.time
+        except Exception as e:
+            print(f"Ocorreu um erro ao visualizar o time: {e}")
     
 #MODALIDADE OK
